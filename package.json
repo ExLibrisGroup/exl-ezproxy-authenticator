@@ -1,0 +1,14 @@
+{
+  "name": "exl-ezproxy-authenticator",
+  "version": "0.0.1",
+  "description": "External script authentication provider for EZproxy",
+  "scripts": {
+    "package": "aws cloudformation package --template ./cloudformation.yaml --s3-bucket $npm_config_s3_bucket_name --output-template cloudformation.packaged.yaml --region $npm_config_region --s3-prefix sam",
+    "deploy": "npm run package && aws cloudformation deploy --template-file cloudformation.packaged.yaml --stack-name $npm_config_cloud_formation_stack_name --capabilities CAPABILITY_IAM --region $npm_config_region --parameter-overrides AlmaApiKey=$npm_config_ALMA_APIKEY GroupMapping=$npm_config_EZPROXY_GROUP_MAPPING && npm run describe-stack",
+    "delete-stack": "aws cloudformation delete-stack --stack-name $npm_config_cloud_formation_stack_name --region $npm_config_region",
+    "describe-stack": "aws cloudformation describe-stacks --stack-name $npm_config_cloud_formation_stack_name --region $npm_config_region --query 'Stacks[0].Outputs[*].{Key:OutputKey,Value:OutputValue,Description:Description}' --output table"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
