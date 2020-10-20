@@ -1,6 +1,8 @@
 # EZproxy Authenticator for Alma
 This project allows [EZproxy](https://www.oclc.org/en/ezproxy.html) to authenticate users stored in the [Ex Libris Identity Service](https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/060Authentication/Ex_Libris_Identity_Service) via EZproxy [external script authentication](https://help.oclc.org/Library_Management/EZproxy/Authenticate_users/EZproxy_authentication_methods/External_script_authentication). 
 
+See [this video](https://youtu.be/28itZYbVUdo) for a walk-through of installing and configuring the authenticator.
+
 ## Configuring EZproxy Groups
 The authenticator can be configured to return an EZproxy group based on the user's group. The configuration takes the form of a "JSON" object such as the below:
 ```
