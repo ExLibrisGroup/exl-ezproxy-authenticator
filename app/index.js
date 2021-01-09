@@ -22,7 +22,10 @@ exports.handler = async (event, context) => {
       const usergroup = resp.user_group.value
       response = '+VALID\nezproxy_group=' 
       if (groups) {
-        const ezproxyGroup = groups && Object.entries(groups).find(([k,v])=>v.includes(usergroup) || v.includes('*'));
+        const ezproxyGroup = groups && Object.entries(groups).find(([k,v])=>Array.isArray(v) 
+          ? v.includes(usergroup) || v.includes('*') 
+          : v === usergroup || v == '*'
+        );
         if (ezproxyGroup) response += ezproxyGroup[0].replace(/ /, '+');
       }
     } catch(e) {

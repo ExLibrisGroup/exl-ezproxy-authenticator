@@ -17,7 +17,7 @@ You can use the value `*` as a catch-all if you want a default group.
 
 The value should then be compacted and added in the `EZPROXY_GROUP_MAPPING` environment variable. The compact view removes new lines and spaces:
 ```
-{"Staff":["ST"],"Graduate Students":["GR", "DC"],"Everyone": ["*"]}
+{"Staff":["ST"],"Graduate Students":["GR","DC"],"Everyone": ["*"]}
 ```
 
 In addition, an Alma API key with read/write access for users is required and should be in the `ALMA_APIKEY` environment variable.
