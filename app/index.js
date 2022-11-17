@@ -17,6 +17,7 @@ exports.handler = async (event, context) => {
     const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString() : event.body;
     const { user, pass } = parse(body);
     try {
+      pass = encodeURIComponent(pass);
       await alma.postp(`/users/${user}?op=auth&password=${pass}`, null);
       let resp = await alma.getp(`/users/${user}`);
       const usergroup = resp.user_group.value
