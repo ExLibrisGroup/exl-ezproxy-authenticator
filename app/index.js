@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
   const { path, method } = event.requestContext.http;
   if (method == 'POST') {
     const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString() : event.body;
-    const { user, pass } = parse(body);
+    let { user, pass } = parse(body);
     try {
       pass = encodeURIComponent(pass);
       await alma.postp(`/users/${user}?op=auth&password=${pass}`, null);
